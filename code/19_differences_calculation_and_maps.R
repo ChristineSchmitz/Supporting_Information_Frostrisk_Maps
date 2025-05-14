@@ -471,24 +471,66 @@ diff_plot_ssp585_hist_2085<-rasterVis::levelplot(diff_raster_early_ssp585_hist_2
   })
 diff_plot_ssp585_hist_2085
 
+
+diff_plot_ssp585_hist_2085_legend<-rasterVis::levelplot(diff_raster_early_ssp585_hist_2085$layer,
+                                                        margin=F,
+                                                        col.regions=byr(120),
+                                                        #col.regions=viridis(100, direction = -1),
+                                                        at=seq(-60, 60, length.out=120),
+                                                        #main="quantile 10",
+                                                        #colorkey=F,
+                                                        #scales=list(x=list(draw=FALSE)),
+                                                        xlab="Longitude",
+                                                        ylab="Latitude",
+                                                        colorkey=list(title=list("Change\nof the\nprobability\n of frost\ndamage\n>10 %\n[Percentage\npoints]",fontsize=8))) +
+  latticeExtra::layer({
+    grid.text(x= 5.9, y=54.8, "SSP5-8.5",
+              gp=gpar(fontsize=8), rot=0,
+              default.units='native',
+              just="left")
+  })+
+  latticeExtra::layer({
+    SpatialPolygonsRescale(layout.north.arrow(type = 1),
+                           offset = c(14,48),
+                           scale = 1.5)
+  })+
+  latticeExtra::layer({
+    xs <- seq(12.5, 14.9, by=0.7)
+    grid.rect(x=xs, y=47.35,
+              width=0.7, height=0.1,
+              gp=gpar(fill=rep(c('transparent', 'black'), 2)),
+              default.units='native')
+    grid.text(x= xs - 0.25, y=47.2, seq(0, 200, by=50),
+              gp=gpar(cex=0.5), rot=0,
+              default.units='native')
+  })+
+  latticeExtra::layer({
+    grid.text(x= 12.5, y=47.05, "kilometers",
+              gp=gpar(cex=0.5), rot=0,
+              default.units='native',
+              just="left")
+  })
+diff_plot_ssp585_hist_2085_legend
+
+
 library(grid)
 
-png("differnce_plot_damage10_early2.png", pointsize=8, width=3600, height=8000, res=600)
+png("differnce_plot_damage10_early_new.png", pointsize=8, width=3600, height=8000, res=600)
 differnce_plot_damage10_early<-c(diff_plot_ssp126_hist_2050,
-                  diff_plot_ssp126_2050_2085,
-                  diff_plot_ssp245_hist_2050,
-                  diff_plot_ssp245_2050_2085,
-                  diff_plot_ssp370_hist_2050,
-                  diff_plot_ssp370_2050_2085,
-                  diff_plot_ssp585_hist_2050,
-                  diff_plot_ssp585_2050_2085,
-                  layout=c(2,4), merge.legends=T)
+                                 diff_plot_ssp126_hist_2085,
+                                 diff_plot_ssp245_hist_2050,
+                                 diff_plot_ssp245_hist_2085,
+                                 diff_plot_ssp370_hist_2050,
+                                 diff_plot_ssp370_hist_2085,
+                                 diff_plot_ssp585_hist_2050,
+                                 diff_plot_ssp585_hist_2085_legend,
+                                 layout=c(2,4), merge.legends=T)
 print(differnce_plot_damage10_early)
 
 #print(median_all_ssp, position = c(0, 0, 1, 1), more = TRUE)
 update(differnce_plot_damage10_early, scales = list(alternating = 1))
 # Add column titles manually
-grid.text(label = c("difference between\n1993-2022 and 2050", "difference between\n2050 and 2085"), 
+grid.text(label = c("difference between\n1993-2022 and 2050", "difference between\n1993-2022 and 2085"), 
           x = seq(0.325, 0.7, length.out = 2),  # Adjust positions for column headers
           y = 0.98, gp = gpar(fontsize = 11, fontface = "bold"))
 dev.off()
@@ -993,28 +1035,69 @@ diff_plot_ssp585_hist_2085<-rasterVis::levelplot(diff_raster_early_ssp585_hist_2
   })
 diff_plot_ssp585_hist_2085
 
+
+diff_plot_ssp585_hist_2085_legend<-rasterVis::levelplot(diff_raster_early_ssp585_hist_2085$layer,
+                                                        margin=F,
+                                                        col.regions=byr(120),
+                                                        #col.regions=viridis(100, direction = -1),
+                                                        at=seq(-60, 60, length.out=120),
+                                                        #main="quantile 10",
+                                                        #colorkey=F,
+                                                        #scales=list(x=list(draw=FALSE)),
+                                                        xlab="Longitude",
+                                                        ylab="Latitude",
+                                                        colorkey=list(title=list("Change\nof the\nprobability\n of frost\ndamage\n>50 %\n[Percentage\npoints]",fontsize=8))) +
+  latticeExtra::layer({
+    grid.text(x= 5.9, y=54.8, "SSP5-8.5",
+              gp=gpar(fontsize=8), rot=0,
+              default.units='native',
+              just="left")
+  })+
+  latticeExtra::layer({
+    SpatialPolygonsRescale(layout.north.arrow(type = 1),
+                           offset = c(14,48),
+                           scale = 1.5)
+  })+
+  latticeExtra::layer({
+    xs <- seq(12.5, 14.9, by=0.7)
+    grid.rect(x=xs, y=47.35,
+              width=0.7, height=0.1,
+              gp=gpar(fill=rep(c('transparent', 'black'), 2)),
+              default.units='native')
+    grid.text(x= xs - 0.25, y=47.2, seq(0, 200, by=50),
+              gp=gpar(cex=0.5), rot=0,
+              default.units='native')
+  })+
+  latticeExtra::layer({
+    grid.text(x= 12.5, y=47.05, "kilometers",
+              gp=gpar(cex=0.5), rot=0,
+              default.units='native',
+              just="left")
+  })
+diff_plot_ssp585_hist_2085_legend
+
+
 library(grid)
 
-png("differnce_plot_damage50_early.png", pointsize=8, width=3600, height=8000, res=600)
-differnce_plot_damage50_early<-c(diff_plot_ssp126_hist_2050,
-                                 diff_plot_ssp126_2050_2085,
+png("differnce_plot_damage50_early_new.png", pointsize=8, width=3600, height=8000, res=600)
+differnce_plot_damage10_early<-c(diff_plot_ssp126_hist_2050,
+                                 diff_plot_ssp126_hist_2085,
                                  diff_plot_ssp245_hist_2050,
-                                 diff_plot_ssp245_2050_2085,
+                                 diff_plot_ssp245_hist_2085,
                                  diff_plot_ssp370_hist_2050,
-                                 diff_plot_ssp370_2050_2085,
+                                 diff_plot_ssp370_hist_2085,
                                  diff_plot_ssp585_hist_2050,
-                                 diff_plot_ssp585_2050_2085,
+                                 diff_plot_ssp585_hist_2085_legend,
                                  layout=c(2,4), merge.legends=T)
-print(differnce_plot_damage50_early)
+print(differnce_plot_damage10_early)
 
 #print(median_all_ssp, position = c(0, 0, 1, 1), more = TRUE)
-update(differnce_plot_damage50_early, scales = list(alternating = 1))
+update(differnce_plot_damage10_early, scales = list(alternating = 1))
 # Add column titles manually
-grid.text(label = c("difference between\n1993-2022 and 2050", "difference between\n2050 and 2085"), 
+grid.text(label = c("difference between\n1993-2022 and 2050", "difference between\n1993-2022 and 2085"), 
           x = seq(0.325, 0.7, length.out = 2),  # Adjust positions for column headers
           y = 0.98, gp = gpar(fontsize = 11, fontface = "bold"))
 dev.off()
-
 
 png("differnce_plot_damage50_early2_with_hist-2085.png", pointsize=8, width=4900, height=8000, res=600)
 differnce_plot_damage50_early<-c(diff_plot_ssp126_hist_2050,
