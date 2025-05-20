@@ -106,9 +106,11 @@ bloomdate_data_new_plot_summary <- bloomdate_data_new_plot_summary %>%
   mutate(model = recode(model, "median" = "average", "quantile10" = "optimistic","quantile90"="pessimistic"))
 bloomdate_data_new_plot_summary <- bloomdate_data_new_plot_summary %>%
   mutate(pathway = recode(pathway, "ssp126" = "SSP1-2.6", "ssp245" = "SSP2-4.5","ssp370"="SSP3-7.0", "ssp585"="SSP5-8.5"))
+bloomdate_data_new_plot_summary$model_2<-factor(bloomdate_data_new_plot_summary$model, levels=c("historical", "optimistic" , "average","pessimistic"))
 
-png("figures/new_names_bloomdate_future.png", pointsize=8, width=5700, height=4000, res=600)
-ggplot(bloomdate_data_new_plot_summary, aes(x = simyear, y = median, col=pathway, shape= model, linetype=model)) +
+
+png("figures/new_names_bloomdate_future.png", pointsize=8,  width=4560, height=3200, res=600)
+ggplot(bloomdate_data_new_plot_summary, aes(x = simyear, y = median, col=pathway, shape= model_2, linetype=model_2)) +
   geom_point(position=position_dodge(width=0.7), size=3) +
   #geom_jitter(width=0.5)+
   geom_errorbar(data=bloomdate_data_new_plot_summary,
@@ -120,8 +122,8 @@ ggplot(bloomdate_data_new_plot_summary, aes(x = simyear, y = median, col=pathway
   theme_bw()+
   xlab("Year")+
   ylab("Start of apple bloom")+
-  scale_shape_manual(values = c(18,16,17,4), name = "summarized\nGCMs")+
-  scale_linetype_manual(values = c("solid", "solid", "dotdash","dotdash"), name = "summarized\nGCMs")+
+  scale_shape_manual(values = c(18,17,16,4), name = "summarized\nGCMs")+
+  scale_linetype_manual(values = c("solid", "dotdash", "solid", "dotdash"), name = "summarized\nGCMs")+
   scale_y_continuous(breaks = c(100, 105,110,115,120), labels = c(expression("April 10"^"th"),
                                                                   expression("April 15"^"th"),
                                                                   expression("April 20"^"th"),
